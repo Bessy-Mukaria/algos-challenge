@@ -8,7 +8,7 @@ import sys
 from flask_swagger import swagger
 from datetime import date, datetime
 
-NO_AUTHENTICATION = True    
+NO_AUTHENTICATION = True
 
 app = Flask(__name__)
 CORS(app)
@@ -35,15 +35,8 @@ def test():
 
 
 def process_input():
-    """
-    Function that processes the data converts it into a json format
 
-    Returns
-    -------
-    data : processed .json data    
-    """
-
-    json_list = request.get_data() 
+    json_list = request.get_data()
     if json_list is None:
         json_list = request.get_json()
         print('json', json_list)
@@ -63,15 +56,6 @@ BETA_MATRIX = bdf.BetaMatrix()
 
 @app.route('/count', methods = ['POST', 'GET'])
 def count_all_events():
-    """
-    Function that counts the number of events in a session
-
-    Returns
-    -------
-     responses:
-            200:
-                description: Jsonified dict of events
-    """
     success, output = process_input()
 
     if success:
@@ -87,11 +71,6 @@ def count_all_events():
 
 @app.route('/update_bandit', methods=['POST', 'GET'])
 def update_beta_function_from_json():
-    
-    """
-    Updates the beta function values.
-    
-    """
     success, output = process_input()
 
     if success:
